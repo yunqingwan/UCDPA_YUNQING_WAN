@@ -61,10 +61,47 @@ print(ireland_uk_vac)
 print(ireland_uk_vac.columns)
 
 print("Obtain data of vaccinated people per hundred in Ireland and UK")
-vac_per_hundred_irl_uk = ireland_uk_vac[['country_x', 'people_vaccinated_per_hundred_x',
+vac_per_hundred_irl_uk = ireland_uk_vac[['date', 'country_x', 'people_vaccinated_per_hundred_x',
                                         'country_y','people_vaccinated_per_hundred_y']]
 print(vac_per_hundred_irl_uk)
 
+#to return a column of a pandas DataFrame as a list
+ireland_vac_per_hundred_list = ireland_uk_vac['people_vaccinated_per_hundred_x'].tolist()
+print(ireland_vac_per_hundred_list)
+
+
+#to remove nan value in the list to return max number in the list:
+import math
+ireland_vac_per_hundred_list_noNaN = [x for x in ireland_vac_per_hundred_list if math.isnan(x) == False]
+print(ireland_vac_per_hundred_list_noNaN)
+print("The maximum daily rate of people vaccinated per hundred in Ireland from 2020-12-31 to 2021-05-05 is: ")
+print(max(ireland_vac_per_hundred_list_noNaN))
+
+uk_vac_per_hundred_list = ireland_uk_vac['people_vaccinated_per_hundred_y'].tolist()
+print(uk_vac_per_hundred_list)
+
+uk_vac_per_hundred_list_noNaN = [x for x in uk_vac_per_hundred_list if math.isnan(x) == False]
+print(uk_vac_per_hundred_list_noNaN)
+
+print("The maximum daily rate of people vaccinated per hundred in UK from 2020-12-31 to 2021-05-05 is: ")
+print(max(uk_vac_per_hundred_list_noNaN))
+
+
+#Numpy
+import numpy as np
+print(type(ireland_uk_vac['people_vaccinated_per_hundred_x']))
+#covert columns in pandas DataFrame to Numpy array
+vac_per_hundred_irl_number_only = ireland_uk_vac['people_vaccinated_per_hundred_x']
+vac_per_hundred_uk_number_only = ireland_uk_vac['people_vaccinated_per_hundred_y']
+x = vac_per_hundred_irl_number_only.to_numpy()
+y = vac_per_hundred_uk_number_only.to_numpy()
+print(x)
+print(y)
+
+print("The ratio of people vaccinated per hundred between Ireland and UK on daily basis is:" )
+print(x/y)
+
+#define a function to find largest number in a list
 
 
 
