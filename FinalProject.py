@@ -98,10 +98,34 @@ y = vac_per_hundred_uk_number_only.to_numpy()
 print(x)
 print(y)
 
-print("The ratio of people vaccinated per hundred between Ireland and UK on daily basis is:" )
+print("The ratio of people vaccinated per hundred between Ireland and UK on daily basis is:")
 print(x/y)
 
-#define a function to find largest number in a list
+
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from matplotlib.dates import DateFormatter
+import datetime as dt
+
+fix, ax = plt.subplots()
+cleaned_ireland_vac["date"] = pd.to_datetime((cleaned_ireland_vac["date"]))
+cleaned_uk_vac["date"] = pd.to_datetime((cleaned_uk_vac["date"]))
+ax.plot(cleaned_ireland_vac["date"], cleaned_ireland_vac['people_fully_vaccinated_per_hundred'], color="g")
+ax.plot(cleaned_uk_vac["date"], cleaned_uk_vac['people_fully_vaccinated_per_hundred'], color="r")
+ax.set(xlabel="Time (Dates)",
+       ylabel="People fully vaccinated per hundred",
+       title="People fully vaccinated per in hundred in Ireland and UK\n December 2020 - May 2021")
+
+date_form = DateFormatter("%Y-%m-%d")
+ax.xaxis.set_major_formatter(date_form)
+ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
+plt.xticks(rotation=45)
+plt.show()
+
+
+
+
+
 
 
 
