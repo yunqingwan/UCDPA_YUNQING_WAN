@@ -101,6 +101,27 @@ print(y)
 print("The ratio of people vaccinated per hundred between Ireland and UK on daily basis is:")
 print(x/y)
 
+#define a function to find if the people vaccinated per hundred in Ireland and UK great than 50
+x_list = x.tolist()
+y_list = y.tolist()
+
+def check(list, val):
+    return(any(x > val for x in list))
+
+list = x_list
+val = 50
+if(check(list,50)):
+    print("The people vaccinated per hundred per day in Ireland has over 50")
+else:
+    print("The people vaccinated per hundred per day in Ireland hasn't over 50")
+
+list =y_list
+val = 50
+if(check(list, val)):
+    print("The people vaccinated per hundred per day in UK has over 50")
+else:
+    print("The people vaccinated per hundred per day in UK hasn't over 50")
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter
@@ -120,6 +141,7 @@ ax.xaxis.set_major_formatter(date_form)
 ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
 plt.xticks(rotation=45)
 plt.show()
+
 
 
 
