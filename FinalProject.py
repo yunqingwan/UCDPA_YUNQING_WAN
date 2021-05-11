@@ -101,7 +101,6 @@ print(y)
 print("The ratio of people vaccinated per hundred between Ireland and UK on daily basis is:")
 print(x/y)
 
-
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.dates import DateFormatter
