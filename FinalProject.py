@@ -38,9 +38,8 @@ print(missing_values_count)
 cleaned_ireland_vac = ireland_vac.fillna(method='bfill', axis=0).fillna(0)
 print(cleaned_ireland_vac.isnull().sum())
 
-#iterate through each row and select
-#'date' and 'people_vaccinated' column respectively
-print("People vaccinated in Ireland according to date:\n")
+#iterate through each row and select 'date' and 'people_vaccinated' column respectively
+print("People vaccinated per hundred in Ireland from vaccination starts:")
 for i in range(len(cleaned_ireland_vac)):
     print(cleaned_ireland_vac.iloc[i, 2], cleaned_ireland_vac.iloc[i, 9])
 
@@ -50,7 +49,7 @@ print(uk_vac.columns)
 cleaned_uk_vac = uk_vac.fillna(method='bfill', axis=0).fillna(0)
 print(cleaned_uk_vac.isnull().sum())
 
-print("People vaccinated in UK according to data:\n")
+print("People vaccinated per hundred in UK from vaccination starts:")
 for i in range(len(cleaned_uk_vac)):
     print(cleaned_uk_vac.iloc[i, 2], cleaned_uk_vac.iloc[i, 9])
 
