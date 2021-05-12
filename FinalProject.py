@@ -55,10 +55,16 @@ for i in range(len(cleaned_uk_vac)):
     print(cleaned_uk_vac.iloc[i, 2], cleaned_uk_vac.iloc[i, 9])
 
 #merge dataframes for data from Ireland and UK
-ireland_uk_vac = pd.merge(cleaned_ireland_vac, cleaned_uk_vac, on='date', how ='outer')
+ireland_uk_vac = pd.merge(cleaned_ireland_vac, cleaned_uk_vac, on='date', how='outer')
 print(cleaned_ireland_vac)
 print(ireland_uk_vac)
 print(ireland_uk_vac.columns)
+
+print("The vaccines are used in Ireland are :")
+print(ireland_uk_vac.iloc[:, 12].value_counts(normalize=True))
+
+print("The vaccines are used in UK are: ")
+print(ireland_uk_vac.iloc[:, 26].value_counts(normalize=True))
 
 print("Obtain data of vaccinated people per hundred in Ireland and UK")
 vac_per_hundred_irl_uk = ireland_uk_vac[['date', 'country_x', 'people_vaccinated_per_hundred_x',
@@ -130,8 +136,8 @@ import datetime as dt
 fix, ax = plt.subplots()
 cleaned_ireland_vac["date"] = pd.to_datetime((cleaned_ireland_vac["date"]))
 cleaned_uk_vac["date"] = pd.to_datetime((cleaned_uk_vac["date"]))
-ax.plot(cleaned_ireland_vac["date"], cleaned_ireland_vac['people_fully_vaccinated_per_hundred'], color="g")
-ax.plot(cleaned_uk_vac["date"], cleaned_uk_vac['people_fully_vaccinated_per_hundred'], color="r")
+ax.plot(cleaned_ireland_vac["date"], cleaned_ireland_vac['people_fully_vaccinated_per_hundred'], color="g", label="Ireland")
+ax.plot(cleaned_uk_vac["date"], cleaned_uk_vac['people_fully_vaccinated_per_hundred'], color="r", label="UK")
 ax.set(xlabel="Time (Dates)",
        ylabel="People fully vaccinated per hundred",
        title="People fully vaccinated per in hundred in Ireland and UK\n December 2020 - May 2021")
@@ -140,9 +146,25 @@ date_form = DateFormatter("%Y-%m-%d")
 ax.xaxis.set_major_formatter(date_form)
 ax.xaxis.set_major_locator(mdates.WeekdayLocator(interval=1))
 plt.xticks(rotation=45)
+ax.legend()
 plt.show()
 
 
+cleaned_ireland_vac["date"] = pd.to_datetime((cleaned_ireland_vac["date"]))
+plt.bar(cleaned_ireland_vac["date"], cleaned_ireland_vac["people_vaccinated"], color="green")
+plt.xlabel("Time (Dates)")
+plt.ylabel("People vaccinated")
+plt.title("People vaccinated in Ireland\n December 2020 - May 2021")
+plt.xticks(rotation=45)
+plt.show()
+
+cleaned_uk_vac["date"] = pd.to_datetime((cleaned_uk_vac["date"]))
+plt.bar(cleaned_uk_vac["date"], cleaned_uk_vac["people_vaccinated"], color="red")
+plt.xlabel("Time (Dates)")
+plt.ylabel("People vaccinated")
+plt.title("People vaccinated in UK\n December 2020 - May 2021")
+plt.xticks(rotation=45)
+plt.show()
 
 
 
