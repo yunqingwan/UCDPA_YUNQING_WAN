@@ -21,35 +21,39 @@ country_vac = pd.read_csv("country_vaccinations.csv")
 
 print(country_vac.head())
 print(country_vac.shape)
+print("The number of countries that are affected by Covid 19:")
+print(country_vac["country"].nunique())
 print(country_vac.country.unique())
-
-#Sorting ascending
-print(country_vac.sort_values('date').head())
 
 #indexing and grouping data for Ireland
 print(country_vac.columns)
 ireland_vac = country_vac[country_vac['country'] == 'Ireland']
 print(ireland_vac)
 
-#repalce missing values
-missing_values_count = ireland_vac.isnull().sum()
-print(missing_values_count)
+uk_vac = country_vac[country_vac['country'] == 'United Kingdom']
+print(uk_vac)
 
-cleaned_ireland_vac = ireland_vac.fillna(method='bfill', axis=0).fillna(0)
+#repalce missing values
+ireland_missing_values_count = ireland_vac.isnull().sum()
+print(ireland_missing_values_count)
+
+cleaned_ireland_vac = ireland_vac.fillna(method='ffill', axis=0).fillna(0)
 print(cleaned_ireland_vac.isnull().sum())
 
+uk_missing_values_count = uk_vac.isnull().sum()
+print(uk_missing_values_count)
+
+cleaned_uk_vac = uk_vac.fillna(method='ffill', axis=0).fillna(0)
+print(cleaned_uk_vac.isnull().sum())
+
 #iterate through each row and select 'date' and 'people_vaccinated' column respectively
+print(cleaned_ireland_vac.columns)
 print("People vaccinated per hundred in Ireland from vaccination starts:")
 for i in range(len(cleaned_ireland_vac)):
     print(cleaned_ireland_vac.iloc[i, 2], cleaned_ireland_vac.iloc[i, 9])
 
-uk_vac = country_vac[country_vac['country'] == 'United Kingdom']
-print(uk_vac)
-print(uk_vac.columns)
-cleaned_uk_vac = uk_vac.fillna(method='bfill', axis=0).fillna(0)
-print(cleaned_uk_vac.isnull().sum())
-
 print("People vaccinated per hundred in UK from vaccination starts:")
+print(cleaned_uk_vac.columns)
 for i in range(len(cleaned_uk_vac)):
     print(cleaned_uk_vac.iloc[i, 2], cleaned_uk_vac.iloc[i, 9])
 
