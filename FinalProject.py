@@ -78,7 +78,6 @@ print(vac_per_hundred_irl_uk)
 ireland_vac_per_hundred_list = ireland_uk_vac['people_vaccinated_per_hundred_x'].tolist()
 print(ireland_vac_per_hundred_list)
 
-
 #to remove nan value in the list to return max number in the list:
 import math
 ireland_vac_per_hundred_list_noNaN = [x for x in ireland_vac_per_hundred_list if math.isnan(x) == False]
@@ -94,7 +93,6 @@ print(uk_vac_per_hundred_list_noNaN)
 
 print("The maximum daily rate of people vaccinated per hundred in UK from 2020-12-31 to 2021-05-05 is: ")
 print(max(uk_vac_per_hundred_list_noNaN))
-
 
 #Numpy
 import numpy as np
@@ -143,7 +141,7 @@ ax.plot(cleaned_ireland_vac["date"], cleaned_ireland_vac['people_fully_vaccinate
 ax.plot(cleaned_uk_vac["date"], cleaned_uk_vac['people_fully_vaccinated_per_hundred'], color="r", label="UK")
 ax.set(xlabel="Time (Dates)",
        ylabel="People fully vaccinated per hundred",
-       title="People fully vaccinated per in hundred in Ireland and UK\n December 2020 - May 2021")
+       title="People fully vaccinated per hundred in Ireland and UK\n January 2021 - May 2021")
 
 date_form = DateFormatter("%Y-%m-%d")
 ax.xaxis.set_major_formatter(date_form)
@@ -157,7 +155,7 @@ cleaned_ireland_vac["date"] = pd.to_datetime((cleaned_ireland_vac["date"]))
 plt.bar(cleaned_ireland_vac["date"], cleaned_ireland_vac["people_vaccinated"], color="green")
 plt.xlabel("Time (Dates)")
 plt.ylabel("People vaccinated")
-plt.title("People vaccinated in Ireland\n December 2020 - May 2021")
+plt.title("People vaccinated in Ireland\n January 2021 - May 2021")
 plt.xticks(rotation=45)
 plt.show()
 
@@ -165,7 +163,7 @@ cleaned_uk_vac["date"] = pd.to_datetime((cleaned_uk_vac["date"]))
 plt.bar(cleaned_uk_vac["date"], cleaned_uk_vac["people_vaccinated"], color="red")
 plt.xlabel("Time (Dates)")
 plt.ylabel("People vaccinated")
-plt.title("People vaccinated in UK\n December 2020 - May 2021")
+plt.title("People vaccinated in UK\n January 2021 - May 2021")
 plt.xticks(rotation=45)
 plt.show()
 
