@@ -166,8 +166,3 @@ plt.ylabel("People vaccinated")
 plt.title("People vaccinated in UK\n January 2021 - May 2021")
 plt.xticks(rotation=45)
 plt.show()
-
-
-
-
-
